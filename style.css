@@ -2,6 +2,8 @@ body {
     background-color: black;
 }
 
+/* Lots of CSS to get the game to position gracefully in the center of the viewport */
+
 #game {
     min-height: 550px;
     min-width: 450px;
@@ -44,7 +46,7 @@ body {
     width: max-content;
 }
 
-/* game board table */
+/* game board table CSS */
 
 #board td {
     width: 50px;
@@ -53,7 +55,7 @@ body {
     position: relative;
 }
   
-/* pieces are div within game table cells: draw as colored circles */
+/* pieces are div within game table cells: they draw as colored circles */
   
 .piece {
     border-radius: 50%;
@@ -64,6 +66,8 @@ body {
     top: 0px;
     left: 0px;
 }
+
+/* piece animation CSS - additional CSS for the animations is generated via JS at runtime */
 
 .piece:not(.top) {
     animation-timing-function: ease-in;
@@ -77,17 +81,24 @@ body {
     background-color: magenta;
 }
 
+/* Game title CSS - this code (along with some JS) makes the title display in the current player's color. */
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
 h1.p1 {
     background-color: black;
-    text-align: center;
     color: cyan;
 }
 
 h1.p2 {
     background-color: black;
-    text-align: center;
     color: magenta;
 }
+
+/* Top Row CSS - this code styles the divs in the top row for the move indicator */
 
 .top {
     background-color: black;

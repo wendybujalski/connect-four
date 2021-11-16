@@ -5,8 +5,8 @@
  * board fills (tie)
  */
 
-const displayTurn = document.getElementById("displayTurn");
-let topRowHoverDivs = document.querySelectorAll("#column-top td div");
+const displayTurn = document.getElementById("displayTurn"); // Used to store the h1 element which displays whose turn it is and messages when the game ends.
+let topRowHoverDivs; // Used to store the top row indicator divs, for styling them to the appropriate player whose turn it is.
 
 const WIDTH = 7; // Width of the game board
 const HEIGHT = 6; // Height of the game board
@@ -15,7 +15,8 @@ let currPlayer = 1; // active player: 1 or 2
 let board = []; // array of rows, each row is array of cells  (board[y][x])
 let gameOver = false;
 
-// generate CSS for piece animations
+// Generates the CSS for piece animations
+// Each row has its own animation so that the pieces always look like they are coming from the top
 const css = window.document.styleSheets[0];
 for(let i = 0; i < HEIGHT; i++) {
   css.insertRule(`
@@ -109,6 +110,10 @@ function placeInTable(y, x) {
 function endGame(msg) {
   gameOver = true;
   displayTurn.innerText = msg;
+  if(msg === "TIE!") {
+    displayTurn.classList.remove("p1");
+    displayTurn.classList.remove("p2");
+  }
   topRowHoverDivs = document.querySelectorAll("#column-top td div");
   topRowHoverDivs.forEach(div => {
     div.classList.remove("p1");
@@ -119,7 +124,7 @@ function endGame(msg) {
 // handleClick: handle click of column top to play piece
 function handleClick(evt) {
   if(gameOver) return;
-  
+
   let target = evt.target;
   if(target.classList.contains("top")) {
     target = target.parentElement;
